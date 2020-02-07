@@ -9,11 +9,12 @@
 import React from 'react';
 import {Text} from 'react-native';
 import Home from './src/screens/containers/Home';
+import Header from './src/screens/components/Header';
 
 const App = () => {
   return (
     <Home>
-      <Text>Aquí va el header</Text>
+      <Header></Header>
       <Text>Aquí va el buscador</Text>
       <Text>Categorías</Text>
       <Text>Sugerencias</Text>
