@@ -7,32 +7,18 @@
  */
 
 import React from 'react';
-import styled from 'styled-components';
-import {Image} from 'react-native';
+import {Text} from 'react-native';
+import Home from './src/screens/containers/Home';
 
 const App = () => {
   return (
-    <Container>
-      <Image
-        style={{width: 300, height: 100}}
-        source={require('./assets/logo.png')}
-      />
-      <Title>Welcome to react native!</Title>
-    </Container>
+    <Home>
+      <Text>Aquí va el header</Text>
+      <Text>Aquí va el buscador</Text>
+      <Text>Categorías</Text>
+      <Text>Sugerencias</Text>
+    </Home>
   );
 };
-
-const Container = styled.View`
-  flex: 1;
-  background-color: #ccc;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Title = styled.Text`
-  font-size: 20px;
-  font-weight: 500;
-  margin-top: 20px;
-`;
 
 export default App;
