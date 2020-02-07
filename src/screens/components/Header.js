@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, Image, SafeAreaView, StyleSheet} from 'react-native';
-import styled from 'styled-components';
+import {View, Image, SafeAreaView, StyleSheet} from 'react-native';
 
 const Header = props => {
   return (
