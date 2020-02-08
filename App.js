@@ -11,16 +11,23 @@ import {Text} from 'react-native';
 import Home from './src/screens/containers/Home';
 import Header from './src/screens/components/Header';
 import SuggestionsList from './src/videos/containers/SuggestionsList';
-import getSuggestions from './api/index';
+import CategoryList from './src/videos/containers/CategoryList';
+import {getSuggestions, getMovies} from './api/index';
 
 const App = () => {
   const [suggestions, setSuggestions] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   // Obtain Suggestions
   useEffect(() => {
     (async function() {
+      // GET
       const suggestions = await getSuggestions(10);
+      const categories = await getMovies();
+
+      // SET
       setSuggestions(suggestions);
-      console.log(suggestions);
+      setCategories(categories);
     })();
   }, []);
 
@@ -29,7 +36,8 @@ const App = () => {
       <Header></Header>
       <Text>Aquí va el buscador</Text>
       <Text>Categorías</Text>
-      <SuggestionsList list={suggestions.length > 0 ? suggestions : null} />
+      <CategoryList categoryList={categories} />
+      <SuggestionsList suggestionList={suggestions} />
     </Home>
   );
 };

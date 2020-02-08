@@ -1,27 +1,25 @@
 import React from 'react';
-import {FlatList} from 'react-native';
-import SuggestionsHeading from '../components/SuggestionsHeading';
+import {View, FlatList} from 'react-native';
 import Empty from '../components/Empty';
-import Separator from '../../screens/components/Separator';
+import HorizontalSeparator from '../../screens/components/HorizontalSeparator';
 import Suggestion from '../components/Suggestion';
+import CategoriesHeading from '../components/CategoriesHeading';
 
-const SuggestionsList = ({suggestionList}) => {
-  // Render empty message
-  const renderEmptyHandler = () => <Empty text="No suggestions available" />;
+const CategoryList = ({categoryList}) => {
+  const renderEmptyHandler = () => <Empty text="No Categories available" />;
 
-  const itemSeparatorHandler = () => <Separator color="#ccc" />;
+  const itemSeparatorHandler = () => <HorizontalSeparator color="#ccc" />;
 
   const renderItemHandler = ({item}) => <Suggestion {...item} />;
 
   // We pass the index so we have unique keys
   const keyExtractorHandler = (item, index) => index.toString();
 
-  // FlatList uses an array of literal objects in data and renders in renderItem
-
   return (
-    <SuggestionsHeading title="Recommended for you">
+    <CategoriesHeading title="Categories">
       <FlatList
-        data={suggestionList}
+        horizontal
+        data={categoryList}
         keyExtractor={keyExtractorHandler}
         // if empty list, show this message :(
         ListEmptyComponent={renderEmptyHandler}
@@ -29,8 +27,8 @@ const SuggestionsList = ({suggestionList}) => {
         ItemSeparatorComponent={itemSeparatorHandler}
         renderItem={renderItemHandler}
       />
-    </SuggestionsHeading>
+    </CategoriesHeading>
   );
 };
 
-export default SuggestionsList;
+export default CategoryList;
