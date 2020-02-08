@@ -5,7 +5,7 @@ const HorizontalSeparator = () => {
   return <Line />;
 };
 
-const Line = styled.view`
+const Line = styled.View`
   flex: 1;
   margin: 0 5px;
 `;

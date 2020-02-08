@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import Empty from '../components/Empty';
 import HorizontalSeparator from '../../screens/components/HorizontalSeparator';
-import Suggestion from '../components/Suggestion';
+import Category from '../components/Category';
 import CategoriesHeading from '../components/CategoriesHeading';
 
 const CategoryList = ({categoryList}) => {
@@ -10,7 +10,9 @@ const CategoryList = ({categoryList}) => {
 
   const itemSeparatorHandler = () => <HorizontalSeparator color="#ccc" />;
 
-  const renderItemHandler = ({item}) => <Suggestion {...item} />;
+  const renderItemHandler = ({item}) => {
+    return <Category {...item} />;
+  };
 
   // We pass the index so we have unique keys
   const keyExtractorHandler = (item, index) => index.toString();
