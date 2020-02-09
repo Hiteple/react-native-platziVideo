@@ -4,6 +4,7 @@ import Empty from '../components/Empty';
 import HorizontalSeparator from '../../screens/components/HorizontalSeparator';
 import Category from '../components/Category';
 import CategoriesHeading from '../components/CategoriesHeading';
+import {connect} from 'react-redux';
 
 const CategoryList = ({categoryList}) => {
   const renderEmptyHandler = () => <Empty text="No Categories available" />;
@@ -33,4 +34,8 @@ const CategoryList = ({categoryList}) => {
   );
 };
 
-export default CategoryList;
+const mapStateToProps = ({categories}) => {
+  return {categoryList: categories};
+};
+
+export default connect(mapStateToProps, null)(CategoryList);

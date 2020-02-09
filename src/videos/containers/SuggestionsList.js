@@ -4,6 +4,7 @@ import SuggestionsHeading from '../components/SuggestionsHeading';
 import Empty from '../components/Empty';
 import Separator from '../../screens/components/Separator';
 import Suggestion from '../components/Suggestion';
+import {connect} from 'react-redux';
 
 const SuggestionsList = ({suggestionList}) => {
   // Render empty message
@@ -33,4 +34,8 @@ const SuggestionsList = ({suggestionList}) => {
   );
 };
 
-export default SuggestionsList;
+const mapStateToProps = ({suggestions}) => {
+  return {suggestionList: suggestions};
+};
+
+export default connect(mapStateToProps, null)(SuggestionsList);

@@ -6,42 +6,55 @@
  * @flow
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Text} from 'react-native';
 import Home from './src/screens/containers/Home';
 import Header from './src/screens/components/Header';
 import SuggestionsList from './src/videos/containers/SuggestionsList';
 import CategoryList from './src/videos/containers/CategoryList';
 import Player from './src/player/containers/Player';
+import {Provider} from 'react-redux';
+
+// Persistent store
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from './store';
 
 import {getSuggestions, getMovies} from './api/index';
 
 const App = () => {
-  const [suggestions, setSuggestions] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  // Obtain Suggestions
+  // Obtain data
   useEffect(() => {
     (async function() {
-      // GET
-      const suggestions = await getSuggestions(10);
+      // GET categories
       const categories = await getMovies();
+      // Go to reducer
+      store.dispatch({
+        type: 'SET_CATEGORIES',
+        payload: {categories},
+      });
 
-      // SET
-      setSuggestions(suggestions);
-      setCategories(categories);
+      // GET suggestions
+      const suggestions = await getSuggestions(10);
+      // Go to reducer
+      store.dispatch({
+        type: 'SET_SUGGESTIONS',
+        payload: {suggestions},
+      });
     })();
   }, []);
 
   return (
-    <Home>
-      <Header></Header>
-      <Player />
-      <Text>Aquí va el buscador</Text>
-      <Text>Categorías</Text>
-      <CategoryList categoryList={categories} />
-      <SuggestionsList suggestionList={suggestions} />
-    </Home>
+    <Provider store={store}>
+      <PersistGate loading={<Text>Loading</Text>} persistor={persistor}>
+        <Home>
+          <Header></Header>
+          <Player />
+          <Text>Aquí va el buscador</Text>
+          <CategoryList />
+          <SuggestionsList />
+        </Home>
+      </PersistGate>
+    </Provider>
   );
 };
 
