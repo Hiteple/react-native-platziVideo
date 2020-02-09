@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-video": "^5.0.2",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {

@@ -12,6 +12,8 @@ import Home from './src/screens/containers/Home';
 import Header from './src/screens/components/Header';
 import SuggestionsList from './src/videos/containers/SuggestionsList';
 import CategoryList from './src/videos/containers/CategoryList';
+import Player from './src/player/containers/Player';
+
 import {getSuggestions, getMovies} from './api/index';
 
 const App = () => {
@@ -34,6 +36,7 @@ const App = () => {
   return (
     <Home>
       <Header></Header>
+      <Player />
       <Text>Aquí va el buscador</Text>
       <Text>Categorías</Text>
       <CategoryList categoryList={categories} />
