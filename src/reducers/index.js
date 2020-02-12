@@ -5,6 +5,8 @@ export const dataFromAPI = (state = {}, action) => {
       return {...state, ...action.payload};
     case 'SET_SUGGESTIONS':
       return {...state, ...action.payload};
+    case 'SET_SELECTED_MOVIE':
+      return {...state, ...action.payload};
     default:
       return state;
   }

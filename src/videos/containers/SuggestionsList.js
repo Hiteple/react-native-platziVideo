@@ -6,13 +6,27 @@ import Separator from '../../screens/components/Separator';
 import Suggestion from '../components/Suggestion';
 import {connect} from 'react-redux';
 
-const SuggestionsList = ({suggestionList}) => {
+const SuggestionsList = props => {
   // Render empty message
   const renderEmptyHandler = () => <Empty text="No suggestions available" />;
 
   const itemSeparatorHandler = () => <Separator color="#ccc" />;
 
-  const renderItemHandler = ({item}) => <Suggestion {...item} />;
+  const viewMovie = movie => {
+    props.dispatch({
+      type: 'SET_SELECTED_MOVIE',
+      payload: {movie},
+    });
+  };
+
+  const renderItemHandler = ({item}) => (
+    <Suggestion
+      onPress={() => {
+        viewMovie(item);
+      }}
+      {...item}
+    />
+  );
 
   // We pass the index so we have unique keys
   const keyExtractorHandler = (item, index) => index.toString();
@@ -22,7 +36,7 @@ const SuggestionsList = ({suggestionList}) => {
   return (
     <SuggestionsHeading title="Recommended for you">
       <FlatList
-        data={suggestionList}
+        data={props.suggestionList}
         keyExtractor={keyExtractorHandler}
         // if empty list, show this message :(
         ListEmptyComponent={renderEmptyHandler}

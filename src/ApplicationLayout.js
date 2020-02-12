@@ -3,22 +3,22 @@ import Home from './screens/containers/Home';
 import Header from './screens/components/Header';
 import SuggestionsList from './videos/containers/SuggestionsList';
 import CategoryList from './videos/containers/CategoryList';
-import Player from './player/containers/Player';
+import Movie from './screens/containers/Movie';
 import {Text} from 'react-native';
 
-import {store} from '../store';
+import {connect} from 'react-redux';
 
 // API
 import {getSuggestions, getMovies} from '../api';
 
-const ApplicationLayout = () => {
+const ApplicationLayout = props => {
   // Obtain data
   useEffect(() => {
     (async function() {
       // GET categories
       const categories = await getMovies();
       // Go to reducer
-      store.dispatch({
+      props.dispatch({
         type: 'SET_CATEGORIES',
         payload: {categories},
       });
@@ -26,17 +26,20 @@ const ApplicationLayout = () => {
       // GET suggestions
       const suggestions = await getSuggestions(10);
       // Go to reducer
-      store.dispatch({
+      props.dispatch({
         type: 'SET_SUGGESTIONS',
         payload: {suggestions},
       });
     })();
   }, []);
 
+  if (props.selectedMovie) {
+    return <Movie />;
+  }
+
   return (
     <Home>
-      <Header></Header>
-      <Player />
+      <Header />
       <Text>Aquí va el buscador</Text>
       <CategoryList />
       <SuggestionsList />
@@ -44,4 +47,8 @@ const ApplicationLayout = () => {
   );
 };
 
-export default ApplicationLayout;
+const mapStateToProps = ({movie}) => {
+  return {selectedMovie: movie};
+};
+
+export default connect(mapStateToProps, null)(ApplicationLayout);
