@@ -7,6 +7,7 @@ import {dataFromAPI} from './src/reducers/index';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  blacklist: ['movie'],
 };
 
 // Persisted reducer
