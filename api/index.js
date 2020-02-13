@@ -17,3 +17,11 @@ export const getMovies = async () => {
 
   return query;
 };
+
+export const searchMovie = async title => {
+  const query = await fetch(
+    `${BASE_API}list_movies.json?limit=1&sort_by=rating&query_term=${title}`,
+  ).then(response => response.json().then(({data}) => data.movies));
+
+  return query;
+};

@@ -4,6 +4,7 @@ import Header from './screens/components/Header';
 import SuggestionsList from './videos/containers/SuggestionsList';
 import CategoryList from './videos/containers/CategoryList';
 import Movie from './screens/containers/Movie';
+import Search from './sections/containers/Search';
 import {Text} from 'react-native';
 
 import {connect} from 'react-redux';
@@ -40,7 +41,7 @@ const ApplicationLayout = props => {
   return (
     <Home>
       <Header />
-      <Text>Aquí va el buscador</Text>
+      <Search />
       <CategoryList />
       <SuggestionsList />
     </Home>
