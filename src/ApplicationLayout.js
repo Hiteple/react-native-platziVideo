@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react';
 import Home from './screens/containers/Home';
-import Header from './screens/components/Header';
 import SuggestionsList from './videos/containers/SuggestionsList';
 import CategoryList from './videos/containers/CategoryList';
 import Movie from './screens/containers/Movie';
 import Search from './sections/containers/Search';
-import {Text} from 'react-native';
 
 import {connect} from 'react-redux';
 
@@ -34,16 +32,11 @@ const ApplicationLayout = props => {
     })();
   }, []);
 
-  if (props.selectedMovie) {
-    return <Movie />;
-  }
-
   return (
     <Home>
-      <Header />
-      <Search />
+      <Search navigation={props.navigation} />
       <CategoryList />
-      <SuggestionsList />
+      <SuggestionsList navigation={props.navigation} />
     </Home>
   );
 };

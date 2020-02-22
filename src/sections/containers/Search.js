@@ -15,6 +15,8 @@ const Search = props => {
         movie: movie[0],
       },
     });
+
+    props.navigation.navigate('Movie');
   };
 
   const handleChange = text => {

@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import MovieLayout from '../components/MovieLayout';
-import Header from '../../screens/components/Header';
 import Player from '../../player/containers/Player';
-import CloseButton from '../../sections/components/CloseButton';
 import Details from '../../videos/components/Details';
 import {connect} from 'react-redux';
 import {Animated} from 'react-native';
@@ -28,9 +26,6 @@ const Movie = props => {
   return (
     <Animated.View style={{flex: 1, opacity: state.opacity}}>
       <MovieLayout>
-        <Header>
-          <CloseButton onPress={closeVideo} />
-        </Header>
         <Player />
         <Details
           title={props.movie.title}

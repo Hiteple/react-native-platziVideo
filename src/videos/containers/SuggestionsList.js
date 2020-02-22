@@ -23,6 +23,7 @@ const SuggestionsList = props => {
     <Suggestion
       onPress={() => {
         viewMovie(item);
+        props.navigation.navigate('Movie');
       }}
       {...item}
     />
